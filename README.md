@@ -13,50 +13,63 @@ Queuing are the most frequently encountered problems in everyday life. For examp
 ## Procedure :
 
 ![image](https://user-images.githubusercontent.com/103921593/203238265-176740b0-eae2-4772-90be-5449869ac9b0.png)
-
-
 ## Program
-
-Name: Pavithra D
-
-Reference Number:212223230146
 ```
 import math
-arr_time=float(input("Enter the mean inter arrival time of objects from Feeder (in secs): "))
-ser_time=float(input("Enter the mean  inter service time of Lathe Machine (in secs) :  "))
-Robot_time=float(input("Enter the Additional time taken for the Robot (in secs) :  "))
-c=int(input("Number of service centre :  "))
-lam=1/arr_time
-mu=1/(ser_time+Robot_time)
-print("--------------------------------------------------------------")
-print("Multiple Server with Infinite Capacity - (M/M/c):(oo/FIFO)")
-print("--------------------------------------------------------------")
-print("The mean arrival rate per second : %0.2f "%lam)
-print("The mean service rate per second : %0.2f "%mu)
-rho=lam/(c*mu)
-sum=(lam/mu)**c*(1/(1-rho))/math.factorial(c)
-for i in range(0,c):
-    sum=sum+(lam/mu)**i/math.factorial(i)
-P0=1/sum
-if (rho<1):
-    Lq=(P0/math.factorial(c))*(1/c)*(lam/mu)**(c+1)/(1-rho)**2
-    Ls=Lq+lam/mu
-    Ws=Ls/lam
-    Wq=Lq/lam
-    print("Average number of objects in the system : %0.2f "%Ls)
-    print("Average number of objects in the conveyor :  %0.2f "%Lq)
-    print("Average waiting time of an object in the system : %0.2f secs"%Ws)
-    print("Average waiting time of an object in the conveyor : %0.2f secs"%Wq)
-    print("Probability that the system is busy : %0.2f "%(rho))
-    print("Probability that the system is empty : %0.2f "%(1-rho))
+
+arr_time_input = ''
+
+while not arr_time_input.strip():
+    arr_time_input = input("Enter the mean inter arrival time of objects from feeder (in secs): ")
+    if not arr_time_input.strip():
+        print("Input cannot be empty. Please enter a value.")
+
+arr_time = float(arr_time_input)
+ser_time = float(input("Enter the mean inter service time of lathe machine (in secs): "))
+Robot_time = float(input("Enter the Additional time taken for the robot (in secs): "))
+c = int(input("Number of service centres: "))
+
+lam = 1 / arr_time
+mu = 1 / (ser_time + Robot_time)
+
+print("------------------------------------------------")
+print("Multiple Server with infinite capacity-(M/M/c):(00/FIFO)")
+print("------------------------------------------------")
+
+print("The mean arrival rate per second: %0.2f" % lam)
+print("The mean service rate per second: %0.2f" % mu)
+
+rho = lam / (c * mu)
+
+sum_val = (lam / mu) ** c * (1 / (1 - rho)) / math.factorial(c)
+
+for i in range(0, c):
+    sum_val = sum_val + (lam / mu) ** i / math.factorial(i)
+
+P0 = 1 / sum_val
+
+if rho < 1:
+    Lq = (P0 / math.factorial(c)) * (1 / c) * (lam / mu) ** (c + 1) / (1 - rho) ** 2
+    Ls = Lq + lam / mu
+    Ws = Ls / lam
+    Wq = Lq / lam
+
+    print("Average number of objects in the system: %0.2f" % Ls)
+    print("Average number of objects in the conveyor: %0.2f" % Lq)
+    print("Average waiting time of an object in the system: %0.2f secs" % Ws)
+    print("Average waiting time of an object in the conveyor: %0.2f secs" % Wq)
+    print("Probability that the system is busy: %0.2f" % rho)
+    print("Probability that the system is empty: %0.2f" % (1 - rho))
+
 else:
-    print("Warning! Objects Over flow will happen in the conveyor")
-print("--------------------------------------------------------------")
+    print("Warning! Objects overflow will happen in the conveyor")
+
+print("-----------------------------------------------------")
+
 ```
 ## Output :
+<img width="940" height="547" alt="image" src="https://github.com/user-attachments/assets/37d8e6d1-a52f-4f63-b2e1-81199c4e1b78" />
 
-![image](https://github.com/PavithraD23004871/Muttiple-capacity-with-infinite-capacity/assets/138955967/7bd4ffc6-f2f9-435b-9963-ab8182bfc4e9)
 
 ## Result : 
-
-By using the python programming we find the Multiple server with infinite capacity and culculated.
+The average number of material in the system and in the conveyor and waiting are successfully found.
